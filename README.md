@@ -9,5 +9,5 @@ All exercises for this subject
 Some of the results from the output must be visualised to for example a barplot or graph.
 
 
-> Gekozen artikel
+> Chosen article
 > https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5 
