@@ -1,0 +1,9 @@
+fastq_file: /students/2023-2024/Thema05/humanGenome/materials/first_10000_records.fastq.gz
+fastq_file2: /students/2023-2024/Thema05/humanGenome/materials/first_10000_RED_lines.fastq.gz 
+StargenomeDir: /students/2023-2024/Thema05/humanGenome/materials/StargenomeDir/
+genome: /students/2023-2024/Thema05/humanGenome/materials/male.hg19.fa
+annotationGTF: /students/2023-2024/Thema05/humanGenome/materials/gencode.v19.annotation.gtf
+output_dir: /students/2023-2024/Thema05/humanGenome/materials/
+
+expressions: /students/2023-2024/Thema05/humanGenome/materials/RSEM_output/RSEM_expressions/
+histogram: plot/
