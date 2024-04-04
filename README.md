@@ -27,7 +27,7 @@ This pipeline walks in 6 steps called rules. Leading to a final histogram file s
 <details open>
     <summary>Show/Collapse workflow</summary>
 
-    ![LT Stein](images/dag.png "workflow to gene expressions histogram")
+![LT Stein](images/dag.png "workflow to gene expressions histogram")
     
 </details>
 
