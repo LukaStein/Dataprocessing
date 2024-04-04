@@ -66,10 +66,10 @@ requirements (install guide - clickable):
     <summary>Snakemake install guide</summary>
 
 1. Install Miniconda
-```shell
+```ruby
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
-```shell 
+```ruby 
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
@@ -78,13 +78,13 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 2. Test conda installation
 *Refresh your terminal session. Then type the following:*
-```shell
+```ruby
 conda list
 ```    
 *No installed packages as output? Revise your installations steps, by following the guide from the official website* 
 
 3. Update conda (if necessary)
-```shell
+```ruby
 conda update conda
 ```
 
@@ -96,22 +96,22 @@ conda update conda
     <summary>Create conda environement</summary>
 
 *After -n specify the name of the conda environment you want to create*
-```shell
+```ruby
 conda create -n snakemake_environment 
 ```
 
 *Forgot the conda env name after creating? *
-```shell
+```ruby
 conda env list  
 ```
 
 *Activate your environment*
-```shell
+```ruby
 conda activate snakemake_enviroment
 ```
 
 *Snakemake will be installed through bioconda and conda-forge*
-```shell
+```ruby
 conda install -c conda-forge -c bioconda snakemake  
 ```
 *Do you want the snakemake version used in this pipeline? Specify snakemake=<version> i.e. snakemake=8.9.0*
@@ -130,28 +130,35 @@ Namely the genome file (as input) and its index file (created in the first rule)
     <summary>Parameter definition/purpose.</summary>
         
 1. fastq_file
-```yaml
+```ruby
 fastq_file: /students/2023-2024/Thema05/humanGenome/materials/first_10000_records.fastq.gz
 #This pipeline is made for two fastq read files as input, i.e. fastq_file, fastq_file2
 fastq_file2: /students/2023-2024/Thema05/humanGenome/materials/first_10000_RED_lines.fastq.gz
 ```
-3. Genome index folder
+2. Genome index folder
+```ruby
 StargenomeDir: /students/2023-2024/Thema05/humanGenome/materials/StargenomeDir/
-*Directory you want your ~ 20-30 gb index file to be stored, when created*
+#Directory you want your ~ 20-30 gb index file to be stored, when created
 genome: /students/2023-2024/Thema05/humanGenome/materials/male.hg19.fa
-*Directory you want your genome file to be stored (must be unpacked i.e. not zipped)*
+#Directory you want your genome file to be stored (must be unpacked i.e. not zipped)
+```
+3. Annotation file of given genome.
+```ruby
+annotationGTF: /students/2023-2024/Thema05/humanGenome/materials/gencode.v19.annotation.gtf
+```
 
-4. Annotation file of given genome.
-> annotationGTF: /students/2023-2024/Thema05/humanGenome/materials/gencode.v19.annotation.gtf
-
-4. Output Directory
+5. Output Directory
+```ruby
 output_dir: /students/2023-2024/Thema05/humanGenome/materials/
-*Directory where in between files are made leading to the final output.*
-*Per rule a directory is created to store its created output*
+#Directory where in between files are made leading to the final output.
+#Per rule a directory is created to store its created output
+```
 
-5. Directory for histogram to be redirected to.
+6. Directory for histogram to be redirected to.
+```ruby
 histogram: plot/
-*Histogram of genes counts with expressions larger than zero*
+#Histogram of genes counts with expressions larger than zero
+```
 
 </details>
 
@@ -162,7 +169,7 @@ histogram: plot/
 
 snakemake -c <cores>. Choose the number of cores suited for your device. 
 Or type -c -all, to select all cores available.
-```shell
+```ruby
 snakemake -c 4
 ```
 
