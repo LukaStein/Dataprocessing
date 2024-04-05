@@ -3,9 +3,23 @@
 This pipeline is build by following the steps in the following [article](https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5). Three main output files are created:
 
     1. Annotated transcript expressions: Quant.isoforms.results (TSV)
+        - File with lots of columns, but the following are most interesting: transcript ids, 
+        two different measure columns of expressions (TPM and FPKM) and read counts in a given transcript.
+        
     2. Gene quantification expressions: Quant.genes.results     (TSV)
+        - Same as the 'isoforms' file, but holds gene ids, expressions of genes and read counts for a given gene. 
+        
     3. Histogram of number of genes found with expression activity: TPM_gene_expressions (PNG)
+<details>
+    <summary>Show example of a created histogram</summary>
+    
+![LT Stein](images/gene_count_expressions.png "gene expressions histogram")
 
+*On the x-axis are log2 expressions values of genes, with a value larger than 0.* \
+*On the y-axis are the counts of genes with a given expression.* \
+*The data is taken from the TPM column that holds gene expressions from the Quant.genes.results file.* 
+
+</details>
 ## The pipeline
 
 This pipeline walks in 6 steps called rules. Leading to a final histogram file showing counts of genes with expression found in your reads.
