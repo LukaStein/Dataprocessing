@@ -12,10 +12,10 @@ two different measure columns of expressions (TPM and FPKM) and read counts in a
 > Same as the 'isoforms' file, but holds gene ids, expressions of genes and read counts for a given gene. 
 
     3. Histogram of number of genes found with expression activity: TPM_gene_expressions (PNG)
-<details>
+<details open>
     <summary>Show example of a created histogram</summary>
     
-![LT Stein](images/gene_count_expressions.png "gene expressions histogram")
+<img src="images/gene_count_expressions.png" width="400" height="400">
 
 *On the x-axis are log2 expressions values of genes, with a value larger than 0.* \
 *On the y-axis are the counts of genes with a given expression.* \
