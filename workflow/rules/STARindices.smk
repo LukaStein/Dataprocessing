@@ -6,15 +6,22 @@ rule StarIndicing:
     annotation=config['annotationGTF']
   output:
     starDir=directory(config['StargenomeDir']),
-    index_complete=config['StargenomeDir'] + '.index_complete'
+    index_complete=config['output_dir'] + '.index_complete'
+  
   message:
     "Indexing of genome to a large index file!... to " + config['StargenomeDir']
   log:
     "logs/StarIndicing.log"
+  benchmark:
+    "benchmarks/StarIndicing.benchmark.txt" 
   params:
-    threads=30,
+    threads=config['threads'],
     sjdbOverhang=100
   conda:
     "envs/getTools.yaml"
   shell:
-    "STAR --runThreadN {params.threads} --runMode genomeGenerate --genomeDir {output.starDir} --genomeFastaFiles {input.genome} --sjdbGTFfile {input.annotation} --sjdbOverhang {params.sjdbOverhang} --outFileNamePrefix {output.starDir} 2> {log}"
+    """
+    mkdir -p {output.starDir}
+    STAR --runThreadN {params.threads} --runMode genomeGenerate --genomeDir {output.starDir} --genomeFastaFiles {input.genome} --sjdbGTFfile {input.annotation} --sjdbOverhang {params.sjdbOverhang} --outFileNamePrefix {output.starDir} 2> {log}
+    touch {output.index_complete}
+    """

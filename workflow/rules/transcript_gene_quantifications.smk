@@ -1,23 +1,31 @@
 configfile: "config/config.yaml"
+RSEMdir=config['output_dir'] + "RSEM_output/"
 
 rule T_G_Quantifications:
   input:
-    genome = config['genome'],
-    annotation = config['annotationGTF']
+    genome=config['genome'],
+    annotation=config['annotationGTF']
   output:
-    RSEMref_grp = config['output_dir'] + "RSEM_output/RSEMref.grp",
-    RSEMref_chrl = config['output_dir'] + "RSEM_output/RSEMref.chrlist",
-    RSEMref_n2g_idx = config['output_dir'] + "RSEM_output/RSEMref.n2g.idx.fa",
-    RSEMref_idx = config['output_dir'] + "RSEM_output/RSEMref.idx.fa",
-    RSEMref_ti = config['output_dir'] + "RSEM_output/RSEMref.ti",
-    RSEMref_seq = config['output_dir'] + "RSEM_output/RSEMref.seq",
-    RSEMref_transcripts = config['output_dir'] + "RSEM_output/RSEMref.transcripts.fa"
+    RSEMref_grp=RSEMdir + "RSEMref.grp",
+    RSEMref_chrl=RSEMdir + "RSEMref.chrlist",
+    RSEMref_n2g_idx=RSEMdir + "RSEMref.n2g.idx.fa",
+    RSEMref_idx=RSEMdir + "RSEMref.idx.fa",
+    RSEMref_ti=RSEMdir + "RSEMref.ti",
+    RSEMref_seq=RSEMdir + "RSEMref.seq",
+    RSEMref_transcripts=RSEMdir + "RSEMref.transcripts.fa"
   message:
-    "Quantifying expression of transcripts and genes... 7 files to " + f"{config['output_dir']}RSEM_output/RSEMref"
+    "Quantifying expression of transcripts and genes... 7 files to" + RSEMdir
   log:
     "logs/T_G_Quantifications.log"
+  benchmark:
+    "benchmarks/T_G_Quantifications.benchmark.txt"
   conda:
     "envs/getTools.yaml"
-  threads: 30
+  threads: config['threads']
+  params: 
+    RSEMdir=config['output_dir'] + "RSEM_output"
   shell:
-    "rsem-prepare-reference --gtf {input.annotation} {input.genome} " + f"{config['output_dir']}RSEM_output/RSEMref " + "2> {log}"
+    """
+    mkdir -p {params.RSEMdir} 
+    rsem-prepare-reference --gtf {input.annotation} {input.genome} {params.RSEMdir}/RSEMref 2> {log}
+    """
