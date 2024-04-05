@@ -7,7 +7,6 @@ rule StarIndicing:
   output:
     starDir=directory(config['StargenomeDir']),
     index_complete=config['output_dir'] + '.index_complete'
-  
   message:
     "Indexing of genome to a large index file!... to " + config['StargenomeDir']
   log:
