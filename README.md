@@ -1,6 +1,6 @@
 # Find Gene Expressions pipeline
 
-This pipeline is build by following the steps in the following [article](https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5). Three main output files are created:
+This pipeline is build by following the steps from [article](https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5). Three main output files are created:
 
     1. Annotated transcript expressions: Quant.isoforms.results (TSV)
         - File with lots of columns, but the following are most interesting: transcript ids, 
