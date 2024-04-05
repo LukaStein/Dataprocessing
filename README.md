@@ -1,5 +1,16 @@
 # Find Gene Expressions pipeline
 
+#### Table of Contents  
+* [The pipeline](#the-pipeline)  
+* [Installation](#installation)  
+* [Dependencies](#dependencies)  
+* [Conda installation](#conda-installation)  
+* [Snakemake installation](#snakemake-installation)  
+* [Parameter set up](#parameter-set-up)  
+* [Run snakemake pipeline](#run-snakemake-pipeline)
+
+---
+
 This pipeline is build by following the steps from [article](https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5). Three main output files are created:
 
     1. Annotated transcript expressions: Quant.isoforms.results (TSV)
@@ -60,7 +71,7 @@ This pipeline walks in 6 steps called rules. Leading to a final histogram file s
 
 What is required to install are **conda, snakemake and R**. All buttons are clickable and will redirect you to the software website. Installation of R and Conda are ambiguous to your system, but their buttons will direct you to a linux installation guide. Since this pipeline was made in linux.
 
-## dependencies
+## Dependencies
 
 
 
