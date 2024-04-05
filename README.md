@@ -3,12 +3,14 @@
 This pipeline is build by following the steps from [article](https://link.springer.com/protocol/10.1007/978-1-4939-4035-6_14#Sec5). Three main output files are created:
 
     1. Annotated transcript expressions: Quant.isoforms.results (TSV)
-        - File with lots of columns, but the following are most interesting: transcript ids, 
-        two different measure columns of expressions (TPM and FPKM) and read counts in a given transcript.
-        
+
+> File with lots of columns, but the following are most interesting: transcript ids, 
+two different measure columns of expressions (TPM and FPKM) and read counts in a given transcript.
+
     2. Gene quantification expressions: Quant.genes.results     (TSV)
-        - Same as the 'isoforms' file, but holds gene ids, expressions of genes and read counts for a given gene. 
-        
+
+> Same as the 'isoforms' file, but holds gene ids, expressions of genes and read counts for a given gene. 
+
     3. Histogram of number of genes found with expression activity: TPM_gene_expressions (PNG)
 <details>
     <summary>Show example of a created histogram</summary>
@@ -20,23 +22,29 @@ This pipeline is build by following the steps from [article](https://link.spring
 *The data is taken from the TPM column that holds gene expressions from the Quant.genes.results file.* 
 
 </details>
+
 ## The pipeline
 
 This pipeline walks in 6 steps called rules. Leading to a final histogram file showing counts of genes with expression found in your reads.
 
 
-1. include: "workflow/rules/STARindices.smk"
+    1. include: "workflow/rules/STARindices.smk"
+> Create index genome from genome.fa and its annotation.gtf file. Can become very large! (>20gb)
 
-2. include: "workflow/rules/Mapping_the_Reads.smk"
+    2. include: "workflow/rules/Mapping_the_Reads.smk"
+> Map two RNA reads.fastq.gz to the index genome directory.
 
-3. include: "workflow/rules/transcriptome_reconstruction_assembly.smk"
+    3. include: "workflow/rules/transcriptome_reconstruction_assembly.smk"
+> Create a transcripts.gtf file from annotation.gtf file and Aligned.sortedByCoord.out.bam (resulted from step 2)
 
-4. include: "workflow/rules/transcript_gene_quantifications.smk"
+    4. include: "workflow/rules/transcript_gene_quantifications.smk"
+> Create RSEM reference files from genome.fa and its annotation.gtf file.
 
-5. include: "workflow/rules/Quantifying_process.smk"
+    5. include: "workflow/rules/Quantifying_process.smk"
+> Create transcript and gene expressions files from RSEM reference files and Aligned.toTranscriptome.out.bam (resulted from step 2)
 
-6. include: "workflow/rules/plot_geneExpressions.smk"
-
+    6. include: "workflow/rules/plot_geneExpressions.smk"
+> Create gene expressions histogram from Quant.genes.results file (resulted from step 5)
 
 <details open>
     <summary>Show/Collapse workflow</summary>
@@ -44,6 +52,7 @@ This pipeline walks in 6 steps called rules. Leading to a final histogram file s
 ![LT Stein](images/dag.png "workflow to gene expressions histogram")
     
 </details>
+
 
 ## Installation
 
@@ -130,13 +139,6 @@ conda install -c conda-forge -c bioconda snakemake
 ```
 *Do you want the snakemake version used in this pipeline? Specify snakemake=<version> i.e. snakemake=8.9.0*
 
-*Tell snakemake to use conda*
-```ruby
-snakemake -c 30 --use-conda --conda-frontend conda
-```
-*Snakemake assumes mamba to be used as default, but since we've downloaded conda it must be specified.* \
-*If you've killed the process resulting in unfinished meta data, add the --ri flag to the command (rerun incomplete)*
-
 </details>
 
 ## Parameter set up
@@ -147,7 +149,7 @@ Namely the genome file (as input) and its index file (created in the first rule)
     
 > In config.yaml you can change the parameters to your situation. Uncollapse the block below to see what the parameters mean.
 
-<details>
+<details open>
     <summary>Parameter definition/purpose.</summary>
         
 1. fastq_file
@@ -158,11 +160,13 @@ fastq_file2: /students/2023-2024/Thema05/humanGenome/materials/first_10000_RED_l
 ```
 2. Genome index folder
 ```ruby
-StargenomeDir: /students/2023-2024/Thema05/humanGenome/materials/StargenomeDir/
+StargenomeDir: /students/2023-2024/Thema05/humanGenome/materials/StargenomeDir
 #Directory you want your ~ 20-30 gb index file to be stored, when created
 genome: /students/2023-2024/Thema05/humanGenome/materials/male.hg19.fa
 #Directory you want your genome file to be stored (must be unpacked i.e. not zipped)
 ```
+*Keep in mind that the path of StargenomeDir can't have a slash at the end!*
+
 3. Annotation file of given genome.
 ```ruby
 annotationGTF: /students/2023-2024/Thema05/humanGenome/materials/gencode.v19.annotation.gtf
@@ -175,11 +179,34 @@ output_dir: /students/2023-2024/Thema05/humanGenome/materials/
 #Per rule a directory is created to store its created output
 ```
 
-6. Directory for histogram to be redirected to.
+6. Directory for histogram to be saved in.
 ```ruby
 histogram: plot/
 #Histogram of genes counts with expressions larger than zero
 ```
+*Since this folder holds the final output, it gets more freedom where to save*
+
+Each rule creates a directory based on the output_dir you've given. \
+Only genome index folder holds an exception, since that folder is created based on the directory name you give.
+Of course if the directory already exists, it won't be created again.
+
+<details open>
+    <summary>See example file tree</summary>
+    
+    output_dir ├────|
+                    ├── cufflinks_output
+                    ├── mappingthereads
+                    │   └── Aligned.sortedByCoord.out.bam 
+                    │   └── Aligned.toTranscriptome.out.bam 
+                    │           
+                    ├── RSEM_output
+                    │   └── RSEM_expressions
+                    │       ├── Quant.gene.results
+                    │       └── Quant.isoforms.results
+                    └── StargenomeDir
+    └── plot/TPM_gene_expressions.png
+    
+</details>
 
 </details>
 
@@ -190,8 +217,13 @@ histogram: plot/
 
 snakemake -c <cores>. Choose the number of cores suited for your device. 
 Or type -c -all, to select all cores available.
+
+*Tell snakemake to use conda*
 ```ruby
-snakemake -c 4
+snakemake -c 30 --use-conda --conda-frontend conda
 ```
+*Snakemake assumes mamba to be used as default, but since we've downloaded conda it must be specified.* \
+*If you've killed the process resulting in unfinished meta data, add the --ri flag to the command (rerun incomplete)*
+
 
 </details>
