@@ -116,6 +116,13 @@ conda install -c conda-forge -c bioconda snakemake
 ```
 *Do you want the snakemake version used in this pipeline? Specify snakemake=<version> i.e. snakemake=8.9.0*
 
+*Tell snakemake to use conda*
+```ruby
+snakemake -c 30 --use-conda --conda-frontend conda
+```
+*Snakemake assumes mamba to be used as default, but since we've downloaded conda it must be specified.* \
+*If you've killed the process resulting in unfinished meta data, add the --ri flag to the command (rerun incomplete)*
+
 </details>
 
 ## Parameter set up
