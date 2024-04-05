@@ -52,7 +52,8 @@ This pipeline walks in 6 steps called rules. Leading to a final histogram file s
 > Create RSEM reference files from genome.fa and its annotation.gtf file.
 
     5. include: "workflow/rules/Quantifying_process.smk"
-> Create transcript and gene expressions files from RSEM reference files and Aligned.toTranscriptome.out.bam (resulted from step 2)
+> Create transcript and gene expressions files from RSEM reference files and Aligned.toTranscriptome.out.bam (resulted from step 2) \
+> This rule can take up to 6 hours! So be careful when logging out.
 
     6. include: "workflow/rules/plot_geneExpressions.smk"
 > Create gene expressions histogram from Quant.genes.results file (resulted from step 5)
