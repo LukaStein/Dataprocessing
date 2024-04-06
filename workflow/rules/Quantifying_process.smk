@@ -34,5 +34,5 @@ rule Quantification_Process:
   shell:
     """
     mkdir -p {params.expressionsDir} 
-    rsem-calculate-expression --bam --no-bam-output --estimate-rspd --calc-ci --seed {params.seed} -p {params.threads} --ci-memory {params.memory} --paired-end --forward-prob {params.fprob} {input.transcriptomeBam} {params.RSEMfiles} {params.expressionsDir}/Quant 2> {log}
+    rsem-calculate-expression --bam --no-bam-output --estimate-rspd --seed {params.seed} -p {params.threads} --ci-memory {params.memory} --paired-end --forward-prob {params.fprob} {input.transcriptomeBam} {params.RSEMfiles} {params.expressionsDir}/Quant 1> {log} 2> {log}
     """

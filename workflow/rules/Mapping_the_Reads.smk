@@ -24,5 +24,5 @@ rule MappingtheReads:
   shell:
      """
      mkdir -p {mapDir}
-     STAR --genomeDir {params.indexedGenome} --readFilesIn {input.read1} {input.read2} --readFilesCommand zcat --outFilterType BySJout --outSAMtype BAM SortedByCoordinate --outSAMattrIHstart 0 --outFilterIntronMotifs RemoveNoncanonical --quantMode TranscriptomeSAM --outWigType bedGraph --outWigStrand Stranded --outFileNamePrefix {params.mapDir} 2> {log}
+     STAR --genomeDir {params.indexedGenome} --readFilesIn {input.read1} {input.read2} --readFilesCommand zcat --outFilterType BySJout --outSAMtype BAM SortedByCoordinate --outSAMattrIHstart 0 --outFilterIntronMotifs RemoveNoncanonical --quantMode TranscriptomeSAM --outWigType bedGraph --outWigStrand Stranded --outFileNamePrefix {params.mapDir} 1> {log} 2> {log}
      """

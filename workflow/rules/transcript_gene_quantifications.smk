@@ -27,5 +27,5 @@ rule T_G_Quantifications:
   shell:
     """
     mkdir -p {params.RSEMdir} 
-    rsem-prepare-reference --gtf {input.annotation} {input.genome} {params.RSEMdir}/RSEMref 2> {log}
+    rsem-prepare-reference --gtf {input.annotation} {input.genome} {params.RSEMdir}/RSEMref 1> {log} 2> {log}
     """

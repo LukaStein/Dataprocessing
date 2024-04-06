@@ -15,4 +15,4 @@ rule plot_geneExpressions:
   benchmark:
     "benchmarks/plot_geneExpressions.benchmark.txt"
   shell:
-    "Rscript scripts/plot_expressions.R {input.geneExpressions} {output} 2> {log}"
+    "Rscript scripts/plot_expressions.R {input.geneExpressions} {output} 1> {log} 2> {log}"

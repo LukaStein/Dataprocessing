@@ -19,5 +19,5 @@ rule TranscriptomeModeler:
   shell:
     """
     mkdir -p {params.cufflinkDir} 
-    cufflinks -p {params.threads} -g {input.annotation} -o {params.cufflinkDir} -u --library-type fr-firststrand {input.bam} 2> {log}
+    cufflinks -p {params.threads} -g {input.annotation} -o {params.cufflinkDir} -u --library-type fr-firststrand {input.bam} 1> {log} 2> {log}
     """

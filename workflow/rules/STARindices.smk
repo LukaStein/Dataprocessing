@@ -21,6 +21,6 @@ rule StarIndicing:
   shell:
     """
     mkdir -p {output.starDir}
-    STAR --runThreadN {params.threads} --runMode genomeGenerate --genomeDir {output.starDir} --genomeFastaFiles {input.genome} --sjdbGTFfile {input.annotation} --sjdbOverhang {params.sjdbOverhang} --outFileNamePrefix {output.starDir} 2> {log}
+    STAR --runThreadN {params.threads} --runMode genomeGenerate --genomeDir {output.starDir} --genomeFastaFiles {input.genome} --sjdbGTFfile {input.annotation} --sjdbOverhang {params.sjdbOverhang} --outFileNamePrefix {output.starDir} 1> {log} 2> {log}
     touch {output.index_complete}
     """
