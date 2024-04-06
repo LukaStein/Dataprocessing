@@ -1,0 +1,29 @@
+rsem-extract-reference-transcripts /students/2023-2024/Thema11/ltstein_snakemake/materials/RSEM_output/RSEMref 0 /students/2023-2024/Thema11/ltstein_snakemake/materials/gencode.v19.annotation.gtf None 0 /students/2023-2024/Thema11/ltstein_snakemake/materials/male.hg19.fa
+Parsed 200000 lines
+Parsed 400000 lines
+Parsed 600000 lines
+Parsed 800000 lines
+Parsed 1000000 lines
+Parsed 1200000 lines
+Parsed 1400000 lines
+Parsed 1600000 lines
+Parsed 1800000 lines
+Parsed 2000000 lines
+Parsed 2200000 lines
+Parsed 2400000 lines
+Parsed 2600000 lines
+Parsing gtf File is done!
+/students/2023-2024/Thema11/ltstein_snakemake/materials/male.hg19.fa is processed!
+196520 transcripts are extracted.
+Extracting sequences is done!
+Group File is generated!
+Transcript Information File is generated!
+Chromosome List File is generated!
+Extracted Sequences File is generated!
+
+rsem-preref /students/2023-2024/Thema11/ltstein_snakemake/materials/RSEM_output/RSEMref.transcripts.fa 1 /students/2023-2024/Thema11/ltstein_snakemake/materials/RSEM_output/RSEMref
+Refs.makeRefs finished!
+Refs.saveRefs finished!
+/students/2023-2024/Thema11/ltstein_snakemake/materials/RSEM_output/RSEMref.idx.fa is generated!
+/students/2023-2024/Thema11/ltstein_snakemake/materials/RSEM_output/RSEMref.n2g.idx.fa is generated!
+

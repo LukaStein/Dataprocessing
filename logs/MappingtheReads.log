@@ -1,0 +1,9 @@
+	/homes/ltstein/Kwartaal_11/Dataprocessing/Project/.snakemake/conda/271302a2a94d362bd3c26e8e1ad45210_/bin/STAR-avx2 --genomeDir /students/2023-2024/Thema11/ltstein_snakemake/materials/StargenomeDir --readFilesIn /students/2023-2024/Thema11/ltstein_snakemake/materials/first_125_records.fastq.gz /students/2023-2024/Thema11/ltstein_snakemake/materials/first_125_RED_records.fastq.gz --readFilesCommand zcat --outFilterType BySJout --outSAMtype BAM SortedByCoordinate --outSAMattrIHstart 0 --outFilterIntronMotifs RemoveNoncanonical --quantMode TranscriptomeSAM --outWigType bedGraph --outWigStrand Stranded --outFileNamePrefix /students/2023-2024/Thema11/ltstein_snakemake/materials/mappingthereads/
+	STAR version: 2.7.11a   compiled: 2023-09-15T02:58:53+0000 :/opt/conda/conda-bld/star_1694746407721/work/source
+Apr 06 23:44:22 ..... started STAR run
+Apr 06 23:44:23 ..... loading genome
+Apr 06 23:44:44 ..... started mapping
+Apr 06 23:44:46 ..... finished mapping
+Apr 06 23:44:46 ..... started sorting BAM
+Apr 06 23:44:46 ..... started wiggle output
+Apr 06 23:46:23 ..... finished successfully
