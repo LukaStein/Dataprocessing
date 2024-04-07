@@ -9,6 +9,7 @@ include: "workflow/rules/plot_geneExpressions.smk"
 
 rule all:
   input:
-    config['histogram'] + 'TPM_gene_expressions.png'
+    config['histogram'] + 'TPM_gene_expressions.png',
+    config['output_dir'] + "cufflinks_output/transcripts.gtf"
 
 	
